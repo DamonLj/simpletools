@@ -25,4 +25,3 @@ def regressionTest():
 
 if __name__ == '__main__':
     unittest.main(defaultTest="regressionTest")
-    print('so')
