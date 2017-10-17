@@ -13,10 +13,11 @@ import sys, os, re, unittest
 
 
 def regressionTest():
-    path = os.path.abspath(os.path.dirname(sys.argv[0]))
+    path = os.getcwd()
+    sys.path.append(path)
     files = os.listdir(path)
     test = re.compile(r'test\.py$', re.IGNORECASE)
-    files = filter(test, files)
+    files = filter(test.search, files)
     moduleNames = map(lambda f: os.path.splitext(f)[0], files)
     modules = map(__import__, moduleNames)
     load = unittest.defaultTestLoader.loadTestsFromModule
@@ -24,4 +25,4 @@ def regressionTest():
 
 
 if __name__ == '__main__':
-    unittest.main(defaultTest="regressionTest")
+    unittest.main(defaultTest='regressionTest')

@@ -77,6 +77,7 @@ class KnownValues(unittest.TestCase):
             result = roman.fromRoman(numeral)
             self.assertEqual(integer, result)
 
+
 class ToRomanBadInput(unittest.TestCase):
     def testTooLarge(self):
         """toRoman should faile with large input"""
@@ -93,6 +94,7 @@ class ToRomanBadInput(unittest.TestCase):
     def testNonInteger(self):
         """toRoman should faile with non-integer input"""
         self.assertRaises(roman.NotIntegerError, roman.toRoman, 0.5)
+
 
 class FromRomanBadInput(unittest.TestCase):
     def testTooManyRepeatedNumerals(self):
@@ -115,6 +117,7 @@ class FromRomanBadInput(unittest.TestCase):
         """fromRoman should faile with blank string"""
         self.assertRaises(roman.InvalidRomanNumeralError, roman.fromRoman, "")
 
+
 class SanityCheck(unittest.TestCase):
     def testSanity(self):
         """fromRoman(toRoman(n))==n for all n"""
@@ -122,6 +125,7 @@ class SanityCheck(unittest.TestCase):
             numeral = roman.toRoman(integer)
             result = roman.fromRoman(numeral)
             self.assertEqual(integer, result)
+
 
 class CaseCheck(unittest.TestCase):
     def testToRomanCase(self):
