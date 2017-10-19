@@ -36,7 +36,7 @@ def toRoman(n):
     """convert integer to Roman numeral"""
     if not (0 < n < 4000):
         raise OutOfRangeError("number out of range(must be 1...3999")
-    if int(n) != n:
+    if not isinstance(n, int):
         raise NotIntegerError("non-integer can not be converted")
 
     result = ''
