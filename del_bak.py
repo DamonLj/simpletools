@@ -20,7 +20,7 @@ def del_bak(path):
             elif f.split('.')[-1] == 'dwl' or f.split('.')[-1] == 'dwl2':
                 os.remove(os.path.join(root, f))
                 dwl_nums += 1
-            elif f.split('.')[-1] == 'tmp':
+            elif f.split('.')[-1] == 'tmp' or f.split('.')[-1] == 'fas':
                 os.remove(os.path.join(root, f))
                 tmp_nums += 1
     print('删除了%d个bak文件，%d个dwl文件，%d个tmp文件' % (bak_nums, dwl_nums, tmp_nums))
