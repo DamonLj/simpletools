@@ -6,6 +6,7 @@ import itertools
 
 
 def solve(puzzle):
+    '''英文等式转换为数学成立等式，如i + love = you'''
     words = re.findall('[A-Z]+', puzzle.upper())
     unique_characters = set(''.join(words))
     assert len(unique_characters) <= 10, 'Too many letters'

@@ -13,6 +13,12 @@ def rule(language):
 
 
 def plural(word, language='en'):
+    '''
+    将单词转化为复数
+    :param word: 要转化的单词
+    :param language: 语言，现只支持英语
+    :return: str
+    '''
     for plural_rule in rules:
         # return plural_rule(word) and plural_rule(word) or None  # 直接退出循环了
         if plural_rule(word):
