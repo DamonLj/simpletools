@@ -86,10 +86,29 @@ def change_indexname(path, words, index):
             n += 1
     print('给%d个文件插入了字符.' % n)
 
+
+def replace_name(path, words, old_words):
+    '''
+    替换指定位置的字符
+    :param path: 文件夹路径
+    :param words: 字符
+    :param old_words: 要替换的字符
+    '''
+    for root, dirs, files in os.walk(path):
+        n = 0  # 计数器
+        for file in files:
+            file_split = file.split('.')
+            newname = file_split[0].replace(old_words, words)
+            os.rename(os.path.join(root, file),
+                      ''.join([os.path.join(root, newname), '.', file_split[-1]]))
+            n += 1
+    print('给%d个文件插入了字符.' % n)
+
 if __name__ == '__main__':
     while True:
         print('操作不能撤回！！！备份文件！')
-        command = input('输入操作，增加前缀输入f；增加后缀输入e；插入字符输入m；替换字符输入c；退出输入q:')
+        command = input('输入操作，增加前缀输入f；增加后缀输入e；插入字符输入m；更改字符输入c'
+                        '替换字符输入r；退出输入q:')
         if command == 'q' or command == 'Q':
             break
         else:
@@ -98,10 +117,10 @@ if __name__ == '__main__':
             while not os.path.isdir(path):
                 print('文件夹路径错误')
                 path = input('重新输入文件夹路径或拖入文件夹:')
-            words = input('输入字符:')
+            words = input('输入需要的字符:')
             while correct_name(words):
                 print('包含非法字符')
-                words = input('重新输入字符:')
+                words = input('重新输入需要的字符:')
             if command == 'f' or command == 'F':
                 add_front(path, words)
             elif command == 'e' or command == 'E':
@@ -118,5 +137,8 @@ if __name__ == '__main__':
                 if index > 0:
                     index -= 1
                 change_indexname(path, words, index)
+            elif command == 'r' or command == 'R':
+                old_words = input('要替换的字符:')
+                replace_name(path, words, old_words)
             else:
                 print('输入错误，重新输入!')
