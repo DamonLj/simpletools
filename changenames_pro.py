@@ -84,7 +84,7 @@ def change_indexname(path, words, index):
             os.rename(os.path.join(root, file),
                       ''.join([os.path.join(root, newname), '.', file_split[-1]]))
             n += 1
-    print('给%d个文件插入了字符.' % n)
+    print('给%d个文件更改了字符.' % n)
 
 
 def replace_name(path, words, old_words):
@@ -102,12 +102,12 @@ def replace_name(path, words, old_words):
             os.rename(os.path.join(root, file),
                       ''.join([os.path.join(root, newname), '.', file_split[-1]]))
             n += 1
-    print('给%d个文件插入了字符.' % n)
+    print('给%d个文件替换了字符.' % n)
 
 if __name__ == '__main__':
     while True:
         print('操作不能撤回！！！备份文件！')
-        command = input('输入操作，增加前缀输入f；增加后缀输入e；插入字符输入m；更改字符输入c'
+        command = input('输入操作，增加前缀输入f；增加后缀输入e；插入字符输入m；更改字符输入c;'
                         '替换字符输入r；退出输入q:')
         if command == 'q' or command == 'Q':
             break
