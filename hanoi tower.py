@@ -6,7 +6,7 @@ def move(p1, p2):
     print('把%s移动到%s' % (p1, p2))
 
 
-def hanoi(n, pA, pB, pC):
+def hanoi(n, pA='A', pB='B', pC='C'):
     '''把n个圆盘从pA移动到pC，另一个位置时pB'''
     if n > 1:
         hanoi(n - 1, pA, pC, pB)
