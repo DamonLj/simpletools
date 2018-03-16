@@ -10,13 +10,13 @@ def solve(puzzle):
     puzzle = puzzle.upper()
     words = re.findall('[A-Z]+', puzzle)
     unique_characters = set(''.join(words))
-    assert len(unique_characters) <= 10, 'Too many letters'
+
     first_letters = {word[0] for word in words}  # 首字母对应的不能为0
     n = len(first_letters)
     # 把首字母放到前面以便后边判断
     sorted_charaters = ''.join(first_letters) + ''.join(unique_characters - first_letters)
     characters = tuple(ord(c) for c in sorted_charaters)
-    digits = tuple(ord(c) for c in '0123456789')
+    digits = tuple(str(i) for i in range(26))
     zero = digits[0]
     for guess in itertools.permutations(digits, len(characters)):
         if zero not in guess[:n]:  # 前n个数字里不出现0，那么首字母就没有0
