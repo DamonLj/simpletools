@@ -34,5 +34,5 @@ def merge_all_dir(dir_path):
 
 if __name__ == "__main__":
     filepath = input("输入文件夹路径：")
-    merge_all_dir(filepath)
-    # merge_to_pdf(filepath)
+    # merge_all_dir(filepath)
+    merge_to_pdf(filepath)
