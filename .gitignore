@@ -3,6 +3,7 @@ roman/.idea/
 .idea/
 */.cache/
 */.idea/
+mk_proj_dir/tree.txt
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Python template
