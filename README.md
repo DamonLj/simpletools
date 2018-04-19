@@ -3,16 +3,10 @@
 * delete .bak
 
 * roman：罗马字母与数字转换
-
-    罗马字母与数字转换
     
-* plural
+* plural：复数转换
 
-    复数转换
-
-* alphametics
-
-    字母对应一位数数字，使等式成立。
+* alphametics：字母对应一位数数字，使等式成立。
 
 * alphametics:英文等式转换为数学成立等式，如i + love = you
 
@@ -22,4 +16,4 @@
 
 * merge_pdf:将同一文件夹下Pdf合并为单个pdf
 
-
+* sudoku:解数独
