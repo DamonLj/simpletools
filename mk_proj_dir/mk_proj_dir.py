@@ -21,15 +21,16 @@ class Tree:
     def __init__(self):
         self.tree = []  # 类似os.walk返回的结构的树结构
         self.nodes = []  # 所有节点的完整路径
-        # self.root = ''
+        self.root = ''
 
 
-    def mk_tree_from_txt(self, path, root=''):
+    def mk_tree_from_txt(self, path, root=None):
         '''
         把缩进结构关系转化为类似[(root1,[dir1.1, dir1.2]), (root2,dir2)]结构
         '''
-        root_node = Node(root, -1)  # 根节点
-        root_node.full_path = root
+        if root == None:
+            root_node = Node(self.root, -1)  # 根节点
+            root_node.full_path = self.root
         dp = [root_node]
         with open(path, 'r', encoding='utf-8') as f:
             for i in f.readlines():
@@ -38,15 +39,14 @@ class Tree:
                 node = Node(t, l)
                 self.nodes.append(node)
                 while True:
-                    if node.l > dp[0].l:
+                    if node.l > dp[0].l:  # 向上一行查找，直到找到上级
                         node.father = dp[0]
                         node.full_path = os.path.join(node.father.full_path, node.t)
                         dp[0].son.append(node)
-                        # print(node.father.full_path, node.t)
                         break
                     else:
-                        dp.pop(0)
-                dp.insert(0, node)
+                        dp.pop(0)  # 如果上一行是同级，就把他弹出，取再上一行
+                dp.insert(0, node)  # 把这行几下，便于下一行对比
 
         self.tree.append((root_node.full_path, [son.t for son in root_node.son]))
         for node in self.nodes:
@@ -55,7 +55,9 @@ class Tree:
         return self.tree
 
 
-    def mk_dir_from_tree(self, root, tree):
+    def mk_dir_from_tree(self, root, tree=None):
+        if tree == None:
+            tree = self.tree
         os.chdir(root)
         for root, dirs in tree:
             for dir in dirs:
@@ -65,8 +67,8 @@ class Tree:
 if __name__ == "__main__":
     tree = Tree()
     tree.mk_tree_from_txt('tree.txt')
-    print(tree.nodes)
-    print(tree.tree)
-    # root = input("输入创建文件夹的位置：")
-    # mk_dir_from_tree(root, tree)
+    # print(tree.nodes)
+    # print(tree.tree)
+    root = input("输入创建文件夹的位置：")
+    tree.mk_dir_from_tree(root)
 
