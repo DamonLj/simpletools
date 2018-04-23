@@ -6,12 +6,11 @@ import os
 
 
 class Node:
-    def __init__(self, t ,l):
+    def __init__(self, t, l):
         self.t = t.replace('\n', '')  # 节点名字
         self.l = l  # 节点层级
         self.son = []  # 节点子节点列表
         self.full_path = ''  # 节点的完整路径
-
 
     def __repr__(self):
         return self.full_path
@@ -23,14 +22,14 @@ class Tree:
         self.nodes = []  # 所有节点的完整路径
         self.root = ''
 
-
     def mk_tree_from_txt(self, path, root=None):
         '''
         把缩进结构关系转化为类似[(root1,[dir1.1, dir1.2]), (root2,dir2)]结构
         '''
-        if root == None:
-            root_node = Node(self.root, -1)  # 根节点
-            root_node.full_path = self.root
+        if root is None:
+            root = self.root
+        root_node = Node(root, -1)  # 根节点
+        root_node.full_path = root
         dp = [root_node]
         with open(path, 'r', encoding='utf-8') as f:
             for i in f.readlines():
@@ -47,16 +46,14 @@ class Tree:
                     else:
                         dp.pop(0)  # 如果上一行是同级，就把他弹出，取再上一行
                 dp.insert(0, node)  # 把这行几下，便于下一行对比
-
         self.tree.append((root_node.full_path, [son.t for son in root_node.son]))
         for node in self.nodes:
             if node.son:
                 self.tree.append((node.full_path, [son.t for son in node.son]))
         return self.tree
 
-
     def mk_dir_from_tree(self, root, tree=None):
-        if tree == None:
+        if tree is None:
             tree = self.tree
         os.chdir(root)
         for root, dirs in tree:
