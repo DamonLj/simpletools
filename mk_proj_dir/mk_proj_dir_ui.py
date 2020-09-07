@@ -10,7 +10,7 @@ import tkinter as tk
 from tkinter import filedialog as fd
 from tkinter import messagebox as mb
 
-from mk_proj_dir.mk_proj_dir import Tree
+from mk_proj_dir import Tree
 
 class MnsUI(tk.Frame):
     def __init__(self, master=None):
